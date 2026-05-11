@@ -4,6 +4,7 @@ import express from 'express';
 import { checkDb, initDb } from './db.js';
 import authRouter from './auth/routes.js';
 import scriptKillRouter from './script-kill/routes.js';
+import subscriptionRouter from './subscription/routes.js';
 
 const app = express();
 const port = Number(process.env.PORT || 8789);
@@ -18,5 +19,6 @@ app.get('/api/health', async (_req, res) => {
 
 app.use('/api/auth', authRouter);
 app.use('/api', scriptKillRouter);
+app.use('/api/subscription', subscriptionRouter);
 
 export { app, port };

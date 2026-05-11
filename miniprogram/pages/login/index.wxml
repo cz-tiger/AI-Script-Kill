@@ -1,0 +1,8 @@
+<view class="container">
+  <view class="header">
+    <text class="title">AI 剧本杀设计大师</text>
+    <text class="subtitle">登录后开始创作</text>
+  </view>
+  <input class="phone-input" placeholder="请输入手机号" value="{{phone}}" bindinput="onInput" type="number" maxlength="11" />
+  <button class="login-btn" bindtap="onLogin" disabled="{{loading}}">{{loading ? '登录中...' : '登录'}}</button>
+</view>
