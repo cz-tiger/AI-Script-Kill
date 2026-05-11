@@ -128,6 +128,7 @@
 
     <!-- Action Buttons -->
     <view class="action-bar">
+      <button class="action-btn share-btn" open-type="share">📤 分享剧本</button>
       <button class="action-btn publish-btn" bindtap="onPublish" wx:if="{{script.status !== 'published'}}">发布剧本</button>
       <button class="action-btn delete-btn" bindtap="onDelete">删除剧本</button>
     </view>

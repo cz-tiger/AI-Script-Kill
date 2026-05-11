@@ -186,11 +186,30 @@ Page({
     });
   },
 
+  onShare() {
+    const s = this.data.script;
+    if (!s) return;
+
+    const themeLabels = { '古风': '🏮', '民国': '🕰️', '现代': '🔍', '科幻': '🚀', '日式': '⛩️', '欧式': '🏰', '校园': '📚' };
+    const characters = (s.characters || []).slice(0, 4).map(c => `${c.name}(${c.occupation})`).join(' · ');
+
+    wx.showShareImageMenu({
+      path: '', // 使用 canvas 生成
+      needShowEntrance: true,
+      fail: () => {
+        // 降级到普通分享
+        wx.showShareMenu({ withShareTicket: true });
+      }
+    });
+  },
+
   onShareAppMessage() {
     const s = this.data.script;
+    const characters = (s.characters || []).slice(0, 3).map(c => c.name).join('、');
     return {
-      title: `剧本杀《${s?.title || '未命名'}》邀你体验`,
-      path: `/pages/script-detail/index?id=${this.data.scriptId}`
+      title: `剧本杀《${s?.title || '未命名'}》｜${s?.theme || ''} ${s?.playerCount || 0}人本`,
+      path: `/pages/script-detail/index?id=${this.data.scriptId}`,
+      imageUrl: '' // 可使用云存储的分享图
     };
   }
 });

@@ -73,6 +73,7 @@
 /* Actions */
 .action-bar { display: flex; gap: 20rpx; margin-top: 40rpx; }
 .action-btn { flex: 1; height: 80rpx; line-height: 80rpx; border-radius: 40rpx; font-size: 28rpx; border: none; }
+.share-btn { background: linear-gradient(135deg, #ff6b35, #f7931e); color: #fff; }
 .publish-btn { background: #3d2b1f; color: #fff; }
 .delete-btn { background: #fff; color: #c0392b; border: 2rpx solid #c0392b; }
 
