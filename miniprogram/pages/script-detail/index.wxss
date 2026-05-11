@@ -1,0 +1,87 @@
+.container { padding: 20rpx 30rpx 60rpx; background: #f5f0eb; min-height: 100vh; }
+.loading, .error { text-align: center; padding: 100rpx 0; font-size: 28rpx; color: #8b7355; }
+
+.title-section { background: linear-gradient(135deg, #3d2b1f, #5c3d2e); padding: 30rpx; border-radius: 16rpx; margin-bottom: 20rpx; }
+.title { font-size: 36rpx; font-weight: bold; color: #fff; display: block; }
+.title-meta { display: flex; gap: 12rpx; margin: 16rpx 0; }
+.badge { font-size: 22rpx; padding: 4rpx 16rpx; border-radius: 16rpx; color: #fff; }
+.badge-draft { background: #f39c12; }
+.badge-published { background: #27ae60; }
+.badge-theme { background: rgba(255,255,255,0.2); }
+.meta { font-size: 24rpx; color: rgba(255,255,255,0.7); }
+
+.tab-bar { white-space: nowrap; margin-bottom: 20rpx; }
+.tab { display: inline-block; padding: 16rpx 32rpx; font-size: 28rpx; color: #8b7355; border-bottom: 4rpx solid transparent; }
+.tab-active { color: #3d2b1f; font-weight: bold; border-bottom-color: #3d2b1f; }
+
+.tab-content { }
+
+/* Character Cards */
+.char-card { background: #fff; border-radius: 16rpx; padding: 24rpx; margin-bottom: 20rpx; }
+.char-header { margin-bottom: 16rpx; }
+.char-name { font-size: 32rpx; font-weight: bold; color: #3d2b1f; display: block; }
+.char-meta { font-size: 24rpx; color: #8b7355; }
+.char-label { font-size: 24rpx; font-weight: bold; color: #5c4a3a; display: block; margin-top: 16rpx; margin-bottom: 8rpx; }
+.char-text { font-size: 26rpx; color: #4a3a2a; line-height: 1.6; display: block; }
+.char-text.secret { background: #fff8e1; padding: 12rpx; border-radius: 8rpx; border-left: 4rpx solid #f39c12; }
+.char-text.mission { background: #e8f5e9; padding: 12rpx; border-radius: 8rpx; border-left: 4rpx solid #27ae60; }
+.char-relations { margin-top: 12rpx; }
+.relation-item { font-size: 24rpx; color: #6b5b4a; padding: 6rpx 0; }
+.highlight { color: #c0392b; font-weight: bold; }
+
+/* Timeline */
+.tl-phase { margin-bottom: 24rpx; }
+.phase-title { font-size: 28rpx; font-weight: bold; color: #3d2b1f; display: block; padding: 12rpx 0; border-bottom: 2rpx solid #d4c5b2; margin-bottom: 12rpx; }
+.tl-item { display: flex; padding: 12rpx 0; border-bottom: 1rpx solid #f0ebe3; }
+.tl-time { width: 100rpx; font-size: 24rpx; font-weight: bold; color: #8b6914; flex-shrink: 0; }
+.tl-detail { flex: 1; }
+.tl-loc { font-size: 24rpx; color: #8b7355; display: block; }
+.tl-event { font-size: 26rpx; color: #3d2b1f; }
+
+/* Clues */
+.clue-card { background: #fff; border-radius: 16rpx; padding: 24rpx; margin-bottom: 16rpx; }
+.clue-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12rpx; }
+.clue-id { font-size: 24rpx; font-weight: bold; color: #8b7355; }
+.clue-type { font-size: 22rpx; padding: 4rpx 14rpx; border-radius: 12rpx; }
+.type-public { background: #e3f2fd; color: #1565c0; }
+.type-personal { background: #fce4ec; color: #c62828; }
+.type-hidden { background: #f3e5f5; color: #6a1b9a; }
+.clue-name { font-size: 28rpx; font-weight: bold; color: #3d2b1f; display: block; margin-bottom: 8rpx; }
+.clue-category { font-size: 22rpx; color: #8791a9; display: block; margin-bottom: 8rpx; }
+.clue-content { font-size: 26rpx; color: #4a3a2a; line-height: 1.6; display: block; margin-bottom: 8rpx; }
+.clue-obtain, .clue-timing { font-size: 24rpx; color: #8b7355; display: block; }
+
+/* Acts */
+.act-card { background: #fff; border-radius: 16rpx; padding: 24rpx; margin-bottom: 20rpx; }
+.act-title { font-size: 30rpx; font-weight: bold; color: #3d2b1f; display: block; margin-bottom: 16rpx; }
+.act-label { font-size: 24rpx; font-weight: bold; color: #5c4a3a; display: block; margin-top: 12rpx; margin-bottom: 6rpx; }
+.act-text { font-size: 26rpx; color: #4a3a2a; line-height: 1.6; display: block; }
+
+/* Host Manual */
+.hm-section { background: #fff; border-radius: 16rpx; padding: 24rpx; margin-bottom: 16rpx; }
+.hm-title { font-size: 28rpx; font-weight: bold; color: #3d2b1f; display: block; margin-bottom: 12rpx; }
+.hm-text { font-size: 26rpx; color: #4a3a2a; line-height: 1.6; display: block; }
+.hm-text.truth { background: #fff3e0; padding: 16rpx; border-radius: 8rpx; border-left: 4rpx solid #e65100; }
+.ending-item { font-size: 24rpx; color: #5c4a3a; padding: 10rpx 0; border-bottom: 1rpx solid #f0ebe3; }
+
+/* Revise */
+.revise-section { margin: 30rpx 0; }
+.section-title { font-size: 28rpx; font-weight: bold; color: #3d2b1f; display: block; margin-bottom: 16rpx; }
+.revise-input { width: 100%; min-height: 100rpx; font-size: 26rpx; padding: 16rpx; border: 1rpx solid #d4c5b2; border-radius: 12rpx; background: #fff; }
+.revise-btn { margin-top: 16rpx; height: 72rpx; line-height: 72rpx; background: #8b6914; color: #fff; border-radius: 36rpx; font-size: 26rpx; border: none; }
+
+/* Actions */
+.action-bar { display: flex; gap: 20rpx; margin-top: 40rpx; }
+.action-btn { flex: 1; height: 80rpx; line-height: 80rpx; border-radius: 40rpx; font-size: 28rpx; border: none; }
+.publish-btn { background: #3d2b1f; color: #fff; }
+.delete-btn { background: #fff; color: #c0392b; border: 2rpx solid #c0392b; }
+
+/* Modal */
+.modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+.modal-content { width: 85%; background: #fff; border-radius: 16rpx; padding: 30rpx; }
+.modal-title { font-size: 32rpx; font-weight: bold; color: #3d2b1f; display: block; margin-bottom: 20rpx; }
+.modal-input { width: 100%; min-height: 200rpx; font-size: 26rpx; padding: 16rpx; border: 1rpx solid #d4c5b2; border-radius: 12rpx; }
+.modal-actions { display: flex; gap: 20rpx; margin-top: 20rpx; }
+.modal-btn { flex: 1; height: 72rpx; line-height: 72rpx; border-radius: 36rpx; font-size: 26rpx; border: none; }
+.cancel-btn { background: #f5f0eb; color: #5c4a3a; }
+.save-btn { background: #3d2b1f; color: #fff; }

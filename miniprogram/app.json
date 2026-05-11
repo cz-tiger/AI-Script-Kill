@@ -1,0 +1,28 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/home/index",
+    "pages/script-kill/index",
+    "pages/script-detail/index",
+    "pages/script-library/index",
+    "pages/subscription/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "AI 剧本杀设计大师",
+    "navigationBarBackgroundColor": "#3d2b1f",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f5f0eb"
+  },
+  "tabBar": {
+    "color": "#8b7355",
+    "selectedColor": "#3d2b1f",
+    "list": [
+      { "pagePath": "pages/home/index", "text": "首页" },
+      { "pagePath": "pages/script-kill/index", "text": "创作" },
+      { "pagePath": "pages/script-library/index", "text": "剧本库" },
+      { "pagePath": "pages/login/index", "text": "我的" }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

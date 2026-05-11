@@ -1,0 +1,91 @@
+<view class="container">
+  <view class="header">
+    <text class="title">AI 剧本杀设计大师</text>
+    <text class="subtitle">一键生成完整谋杀之谜剧本</text>
+  </view>
+
+  <!-- 参数配置区 -->
+  <view class="config-section">
+    <view class="section-title">玩家人数</view>
+    <slider min="3" max="10" value="{{playerCount}}" bindchange="onPlayerCountChange" show-value block-size="20" />
+    <text class="slider-label">{{playerCount}} 人</text>
+  </view>
+
+  <view class="config-section">
+    <view class="section-title">主题风格</view>
+    <view class="chip-group">
+      <view wx:for="{{themes}}" wx:key="*this"
+        class="chip {{selectedTheme === item ? 'chip-active' : ''}}"
+        data-theme="{{item}}" bindtap="onThemeSelect">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="config-section">
+    <view class="section-title">难度等级</view>
+    <view class="chip-group">
+      <view wx:for="{{difficulties}}" wx:key="value"
+        class="chip {{selectedDifficulty === item.value ? 'chip-active' : ''}}"
+        data-value="{{item.value}}" bindtap="onDifficultySelect">{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="config-section">
+    <view class="section-title">预计时长</view>
+    <view class="chip-group">
+      <view wx:for="{{durations}}" wx:key="value"
+        class="chip {{selectedDuration === item.value ? 'chip-active' : ''}}"
+        data-value="{{item.value}}" bindtap="onDurationSelect">{{item.label}}</view>
+    </view>
+  </view>
+
+  <view class="config-section">
+    <view class="section-title">创作灵感（可选）</view>
+    <textarea class="inspo-input" placeholder="例如：发生在民国上海滩的豪门恩怨，每个角色都有一段不堪回首的过去..."
+      value="{{inspiration}}" bindinput="onInspirationInput" maxlength="500" auto-height />
+  </view>
+
+  <!-- 生成按钮 -->
+  <button class="generate-btn {{generating ? 'loading' : ''}}" bindtap="onGenerate" disabled="{{generating}}">
+    {{generating ? '正在生成中...' : '🎭 生成剧本'}}
+  </button>
+
+  <view class="error" wx:if="{{error}}">{{error}}</view>
+
+  <!-- 生成结果预览 -->
+  <view class="result" wx:if="{{script}}">
+    <view class="result-header">
+      <text class="result-title">{{script.title}}</text>
+      <text class="result-badge source-{{script.source}}">{{script.source === 'ai' ? 'AI 生成' : '模板改编'}}</text>
+    </view>
+
+    <view class="result-meta">
+      <text>{{script.theme}} · {{script.playerCount}}人 · {{script.difficulty === 'intermediate' ? '进阶' : script.difficulty === 'beginner' ? '新手' : '硬核'}}</text>
+    </view>
+
+    <view class="result-preview">
+      <view class="preview-section">
+        <text class="preview-label">角色 ({script.characters.length}}人)</text>
+        <block wx:for="{{script.characters}}" wx:for-item="c" wx:key="name">
+          <text class="preview-char">{{c.name}} — {{c.occupation}}</text>
+        </block>
+      </view>
+
+      <view class="preview-section">
+        <text class="preview-label">线索数量</text>
+        <text>{{script.clues.length}} 条</text>
+      </view>
+
+      <view class="preview-section">
+        <text class="preview-label">分幕</text>
+        <text>{{script.acts.length}} 幕</text>
+      </view>
+    </view>
+
+    <button class="detail-btn" bindtap="onViewDetail">查看完整剧本</button>
+  </view>
+
+  <!-- 底部导航 -->
+  <view class="bottom-nav">
+    <text class="nav-link" bindtap="onViewLibrary">我的剧本库</text>
+  </view>
+</view>

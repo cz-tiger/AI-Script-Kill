@@ -1,0 +1,147 @@
+<view class="container">
+  <!-- Loading -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- Error -->
+  <view class="error" wx:elif="{{error}}">
+    <text>{{error}}</text>
+  </view>
+
+  <!-- Script Detail -->
+  <view class="detail" wx:elif="{{script}}">
+    <!-- Title -->
+    <view class="title-section">
+      <text class="title">{{script.title}}</text>
+      <view class="title-meta">
+        <text class="badge badge-{{script.status}}">{{script.status === 'draft' ? '草稿' : script.status === 'published' ? '已发布' : script.status}}</text>
+        <text class="badge badge-theme">{{script.theme}}</text>
+      </view>
+      <text class="meta">{{script.playerCount}}人本 · {{script.duration}}分钟 · {{script.wordCount}}字</text>
+    </view>
+
+    <!-- Tab Bar -->
+    <scroll-view class="tab-bar" scroll-x>
+      <view wx:for="{{tabs}}" wx:key="key"
+        class="tab {{activeTab === item.key ? 'tab-active' : ''}}"
+        data-key="{{item.key}}" bindtap="onTabTap">{{item.label}}</view>
+    </scroll-view>
+
+    <!-- Tab Content: Characters -->
+    <view class="tab-content" wx:if="{{activeTab === 'characters'}}">
+      <view class="char-card" wx:for="{{script.characters}}" wx:key="name">
+        <view class="char-header">
+          <text class="char-name">{{item.name}}</text>
+          <text class="char-meta">{{item.age}}岁 · {{item.gender}} · {{item.occupation}}</text>
+        </view>
+        <text class="char-label">性格</text>
+        <text class="char-text">{{item.personality}}</text>
+        <text class="char-label">背景</text>
+        <text class="char-text">{{item.background}}</text>
+        <text class="char-label">秘密</text>
+        <text class="char-text secret">{{item.secret}}</text>
+        <text class="char-label">任务</text>
+        <text class="char-text mission">{{item.mission}}</text>
+        <view class="char-relations" wx:if="{{item.relations && item.relations.length}}">
+          <text class="char-label">人物关系</text>
+          <view class="relation-item" wx:for="{{item.relations}}" wx:for-item="r" wx:key="with">
+            <text>与 <text class="highlight">{{r.with}}</text>：{{r.type}} — {{r.detail}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Tab Content: Timeline -->
+    <view class="tab-content" wx:if="{{activeTab === 'timeline'}}">
+      <view class="tl-phase" wx:for="{{['案发前','案发时','案发后']}}" wx:key="*this" wx:for-item="phase">
+        <text class="phase-title">{{phase}}</text>
+        <block wx:for="{{script.timeline}}" wx:for-item="t" wx:key="time">
+          <view class="tl-item" wx:if="{{t.phase === phase}}">
+            <text class="tl-time">{{t.time}}</text>
+            <view class="tl-detail">
+              <text class="tl-loc">{{t.location}}</text>
+              <text class="tl-event">{{t.events}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- Tab Content: Clues -->
+    <view class="tab-content" wx:if="{{activeTab === 'clues'}}">
+      <view class="clue-card" wx:for="{{script.clues}}" wx:key="id">
+        <view class="clue-header">
+          <text class="clue-id">{{item.id}}</text>
+          <text class="clue-type type-{{item.type}}">{{item.type === 'public' ? '公共' : item.type === 'personal' ? '个人' : '隐藏'}}</text>
+        </view>
+        <text class="clue-name">{{item.name}}</text>
+        <text class="clue-category">{{item.category}}</text>
+        <text class="clue-content">{{item.content}}</text>
+        <text class="clue-obtain">获取方式：{{item.obtain_method}}</text>
+        <text class="clue-timing">揭示时机：{{item.reveal_timing}}</text>
+      </view>
+    </view>
+
+    <!-- Tab Content: Acts -->
+    <view class="tab-content" wx:if="{{activeTab === 'acts'}}">
+      <view class="act-card" wx:for="{{script.acts}}" wx:key="act_number">
+        <text class="act-title">第{{item.act_number}}幕：{{item.title}}</text>
+        <text class="act-label">场景设定</text>
+        <text class="act-text">{{item.scene_setting}}</text>
+        <text class="act-label">剧情推进</text>
+        <text class="act-text">{{item.narrative}}</text>
+        <text class="act-label">对话引导</text>
+        <text class="act-text">{{item.dialogue_guide}}</text>
+      </view>
+    </view>
+
+    <!-- Tab Content: Host Manual -->
+    <view class="tab-content" wx:if="{{activeTab === 'host_manual'}}">
+      <view class="hm-section">
+        <text class="hm-title">开场白</text>
+        <text class="hm-text">{{script.hostManual.opening || '暂无'}}</text>
+      </view>
+      <view class="hm-section">
+        <text class="hm-title">节奏控制</text>
+        <text class="hm-text">{{script.hostManual.pace_notes || '暂无'}}</text>
+      </view>
+      <view class="hm-section">
+        <text class="hm-title">真相复盘</text>
+        <text class="hm-text truth">{{script.hostManual.truth || '暂无'}}</text>
+      </view>
+      <view class="hm-section" wx:if="{{script.hostManual.ending_branches && script.hostManual.ending_branches.length}}">
+        <text class="hm-title">结局分支</text>
+        <view class="ending-item" wx:for="{{script.hostManual.ending_branches}}" wx:key="*this">
+          <text>{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- AI Revise Section -->
+    <view class="revise-section">
+      <text class="section-title">AI 修订</text>
+      <textarea class="revise-input" placeholder="输入修改意见，例如：&#10;'把凶手的作案动机改得更强烈一些'&#10;'增加一条关于花园的秘密线索'"
+        value="{{reviseFeedback}}" bindinput="onReviseInput" maxlength="500" auto-height />
+      <button class="revise-btn" bindtap="onRevise" disabled="{{revising}}">{{revising ? '修订中...' : 'AI 修订'}}</button>
+    </view>
+
+    <!-- Action Buttons -->
+    <view class="action-bar">
+      <button class="action-btn publish-btn" bindtap="onPublish" wx:if="{{script.status !== 'published'}}">发布剧本</button>
+      <button class="action-btn delete-btn" bindtap="onDelete">删除剧本</button>
+    </view>
+  </view>
+
+  <!-- Edit Modal -->
+  <view class="modal" wx:if="{{editing}}">
+    <view class="modal-content">
+      <text class="modal-title">编辑</text>
+      <textarea class="modal-input" value="{{editContent}}" bindinput="onEditInput" maxlength="2000" auto-height />
+      <view class="modal-actions">
+        <button class="modal-btn cancel-btn" bindtap="onCancelEdit">取消</button>
+        <button class="modal-btn save-btn" bindtap="onSaveEdit">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

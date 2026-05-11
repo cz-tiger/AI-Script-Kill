@@ -1,0 +1,42 @@
+<view class="container">
+  <view class="header">
+    <text class="title">我的剧本库</text>
+    <button class="new-btn" bindtap="onCreateNew">+ 创作新剧本</button>
+  </view>
+
+  <view class="filter-bar">
+    <view wx:for="{{['all','draft','published']}}" wx:key="*this" wx:for-item="f"
+      class="filter-chip {{filter === f ? 'active' : ''}}"
+      data-filter="{{f}}" bindtap="onFilterTap">
+      {{f === 'all' ? '全部' : f === 'draft' ? '草稿' : '已发布'}}
+    </view>
+  </view>
+
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <view class="error" wx:elif="{{error}}">
+    <text>{{error}}</text>
+  </view>
+
+  <view class="empty" wx:elif="{{scripts.length === 0}}">
+    <text class="empty-icon">📜</text>
+    <text class="empty-text">还没有剧本</text>
+    <text class="empty-hint">点击"创作新剧本"开始你的第一个故事</text>
+  </view>
+
+  <view class="script-list" wx:else>
+    <view class="script-item" wx:for="{{scripts}}" wx:key="id"
+      data-id="{{item.id}}" bindtap="onScriptTap">
+      <view class="item-left">
+        <text class="item-title">{{item.title}}</text>
+        <text class="item-meta">{{item.theme}} · {{item.playerCount}}人 · {{item.difficulty === 'intermediate' ? '进阶' : item.difficulty === 'beginner' ? '新手' : '硬核'}}</text>
+      </view>
+      <view class="item-right">
+        <text class="item-status status-{{item.status}}">{{item.status === 'draft' ? '草稿' : '已发布'}}</text>
+        <text class="item-date">{{item.createdAt}}</text>
+      </view>
+    </view>
+  </view>
+</view>

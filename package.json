@@ -1,0 +1,23 @@
+{
+  "name": "ai-script-kill",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "openai": "^4.87.0",
+    "pg": "^8.13.0"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.0",
+    "supertest": "^7.1.0"
+  }
+}
